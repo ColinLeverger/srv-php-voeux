@@ -33,24 +33,10 @@ Pour le dossier « ./srv\_php\_voeux/uploads »,donner les droits de lecture E
 5. Utilisez le site
 Rendez vous à l’adresse du site, et connectez vous avec l’utilisateur « vthion » et le mot de passe « servicesENSSAT ».
 
-# Avec Ansible (histoire de chill un peu)
-
-# 1 - Clone repos
-
-- name: Create special folder for sites
-  file:
-    path="/home/colin-srv/sites/"
-    state=directory
-    mode=0755
-
-- name: Clone repos for srv-voeux
-  git:
-    repo="https://github.com/ColinLeverger/srv-php-voeux.git"
-    dest="/home/colin-srv/sites/srv-php-voeux/"
-
-# 2 - Docker management
+# Avec Ansible (histoire de rigoler)
 
 ```yaml
+
 # tasks file for srv-voeux
 # 1 - Clone repos
 
