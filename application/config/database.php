@@ -49,8 +49,8 @@ $active_group = 'default';
 $active_record = TRUE;
 
 $db['default']['hostname'] = 'db-srv-php-voeux';
-$db['default']['username'] = 'root';
-$db['default']['password'] = '';
+$db['default']['username'] = 'voeux';
+$db['default']['password'] = 'voeux';
 $db['default']['database'] = 'voeux';
 $db['default']['dbdriver'] = 'mysql';
 $db['default']['dbprefix'] = '';
