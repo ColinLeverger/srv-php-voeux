@@ -17,7 +17,7 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 | environments.
 |
 */
-$config['base_url'] = 'http://experiment1.colinleverger.fr/';
+$config['base_url'] = 'http://srv-php-voeux.colinleverger.fr/';
 
 /*
 |--------------------------------------------------------------------------
