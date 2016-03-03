@@ -33,6 +33,67 @@ Pour le dossier « ./srv\_php\_voeux/uploads »,donner les droits de lecture E
 5. Utilisez le site
 Rendez vous à l’adresse du site, et connectez vous avec l’utilisateur « vthion » et le mot de passe « servicesENSSAT ».
 
+# Avec Ansible (histoire de chill un peu)
+
+# 1 - Clone repos
+
+- name: Create special folder for sites
+  file:
+    path="/home/colin-srv/sites/"
+    state=directory
+    mode=0755
+
+- name: Clone repos for srv-voeux
+  git:
+    repo="https://github.com/ColinLeverger/srv-php-voeux.git"
+    dest="/home/colin-srv/sites/srv-php-voeux/"
+
+# 2 - Docker management
+
+```yaml
+# tasks file for srv-voeux
+# 1 - Clone repos
+
+- name: Create special folder for sites
+  file:
+    path="/home/someuser/sites/"
+    state=directory
+    mode=0755
+
+- name: Clone repos for srv-voeux
+  git:
+    repo="https://github.com/ColinLeverger/srv-php-voeux.git"
+    dest="/home/someuser/sites/srv-php-voeux/"
+
+# 2 - Docker management
+
+- name: Create docker mysql database
+  docker:
+    name: db-srv-php-voeux
+    image: tutum/mysql
+    state: started
+    volumes:
+    - "/home/someuser/sites/srv-php-voeux/Dump_Projet.sql:/tmp/Dump_Projet.sql"
+    env:
+      ON_CREATE_DB: "voeux"
+      STARTUP_SQL: "/tmp/Dump_Projet.sql"
+      MYSQL_USER: voeux
+      MYSQL_PASS: voeux
+
+- name: Create docker apache2
+  docker:
+    name: apache2-srv-php-voeux
+    image: tutum/apache-php
+    links:
+    - "db-srv-php-voeux:db-srv-php-voeux"
+    state: started
+    volumes:
+    - "/home/someuser/sites/srv-php-voeux/:/var/www/html/"
+    env:
+      ALLOW_OVERRIDE: true
+      VIRTUAL_HOST: foo.fr
+```
+
 Bonne utilisation !
 
 Testé et approuvé sur Mac avec Apache2, PHP 5.6.7, la dernière version de MySQL et sur Linux avec Apache2, PHP 5.6 et la dernière version de MySQL.
