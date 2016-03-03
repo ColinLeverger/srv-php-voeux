@@ -4,6 +4,11 @@ Projet IMR réalisé à l'ENSSAT de Lannion, en Avril 2015. Promotion 2017.
 
 Live preview : [http://srv-php-voeux.colinleverger.fr/](http://srv-php-voeux.colinleverger.fr/)
 
+Identifiants pour jouer :
+
+- user : bvozel
+- pwd : servicesENSSAT
+
 # Membres du projet
 
 - Colin LEVERGER
